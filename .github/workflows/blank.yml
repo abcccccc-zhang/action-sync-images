@@ -19,6 +19,8 @@ jobs:
         TAG_NAME=${GITHUB_REF_NAME}  # 提取 tag 名称
         docker pull ${TAG_NAME}
         docker images
+        images_name=echo ${TAG_NAME} | awk -F'-' '{print $1}'
+        tag_name=echo ${TAG_NAME} | awk -F'-' '{print $2}'
         echo ${{ secrets.DOCKER_USERNAME }} ${{ secrets.DOCKER_PASSWORD }}
     # # 1. 检出代码
     # - name: Checkout code
