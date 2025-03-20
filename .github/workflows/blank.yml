@@ -6,13 +6,14 @@ on:
       - main  # 或其他你需要的触发分支
 
 jobs:
-  docker:
-    runs-on: ubuntu-latest
+  get-tag-name:
+    runs-on: ubuntu-latest  # 使用默认的 Ubuntu 环境
 
     steps:
      # 2. 获取并输出 Tag 名称
     - name: Get Tag Name
       run: |
+        export
         TAG_NAME=${GITHUB_REF##*/}  # 提取 tag 名称
         echo "The tag name is: $TAG_NAME"
     # # 1. 检出代码
