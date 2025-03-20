@@ -16,8 +16,8 @@ jobs:
     - name: Get Tag Name
       run: |
         export
-        # TAG_NAME=${GITHUB_REF_NAME}  # 提取 tag 名称
-        TAG_NAME="nginx-1.26"
+        TAG_NAME=${GITHUB_REF_NAME}  # 提取 tag 名称
+  
         images_name=echo ${TAG_NAME} | awk -F'-' '{print $1}'
         tag_name=echo ${TAG_NAME} | awk -F'-' '{print $2}'
         echo ${tag_name}
