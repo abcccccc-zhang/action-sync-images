@@ -16,8 +16,9 @@ jobs:
     - name: Get Tag Name
       run: |
         export
-        TAG_NAME=${GITHUB_REF##*/}  # 提取 tag 名称
-        echo "The tag name is: $TAG_NAME"
+        TAG_NAME=${GITHUB_REF_NAME}  # 提取 tag 名称
+        docker pull ${TAG_NAME}
+        docker images
     # # 1. 检出代码
     # - name: Checkout code
     #   uses: actions/checkout@v2
