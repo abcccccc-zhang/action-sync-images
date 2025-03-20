@@ -1,0 +1,45 @@
+name: Docker Pull and Push
+
+on:
+  push:
+    branches:
+      - main  # 或其他你需要的触发分支
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+
+    steps:
+     # 2. 获取并输出 Tag 名称
+    - name: Get Tag Name
+      run: |
+        TAG_NAME=${GITHUB_REF##*/}  # 提取 tag 名称
+        echo "The tag name is: $TAG_NAME"
+    # # 1. 检出代码
+    # - name: Checkout code
+    #   uses: actions/checkout@v2
+
+    # # 2. 设置 Docker Buildx
+    # - name: Set up Docker Buildx
+    #   uses: docker/setup-buildx-action@v2
+
+    # 3. 登录到 Docker 仓库
+    # - name: Log in to DockerHub
+    #   uses: docker/login-action@v2
+    #   with:
+    #     username: ${{ secrets.DOCKER_USERNAME }}
+    #     password: ${{ secrets.DOCKER_PASSWORD }}
+
+    # 4. 拉取镜像
+    # - name: Pull Docker image
+    #   run: docker pull example-image:latest
+
+    # # 5. 登录到私有仓库 (10.10.10.95)
+    # - name: Log in to Private Registry
+    #   run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login 10.10.10.95 -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+
+    # # 6. 推送镜像到私有仓库
+    # - name: Push image to private registry
+    #   run: |
+    #     docker tag example-image:latest registry.cn-hangzhou.aliyuncs.com/zhangjianlin/zhangjianlin:
+    #     docker push 10.10.10.95/my-repo:latest
